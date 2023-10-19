@@ -7,6 +7,7 @@
 5. Detail View: Implement a "Detail" button in each row. When a user clicks on it, a popup/modal should appear, displaying detailed information about the character, including an image, gender, location, and origin. (fetch single character details)
 6. Pagination: Implement pagination for the displayed characters.
 
+
 # Find the website at
 [Rick and Morty](https://master.d3isv88gi0onxz.amplifyapp.com/)
    
@@ -25,6 +26,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - Used tailwind for styling instead of using CSS or SASS and redefining all styles.
 - Have a straightforward file and folder system. A components folder with components for sorting, search bar, table, pagination and modal.
 - All the functionality and state are handled in the root itself. I haven't utilized any redux or state management as it's a fairly simple component structure and props are passed only one level.
+- #### However, redux is implemented in a separate branch called redux.
 
 ### Challenges encountered and how you addressed them.
 - No major challenges. Pretty straightforward assignment. Faced a couple of challenges with UI styling choices and had to refer to the tailwind documentation.
