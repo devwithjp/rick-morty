@@ -1,5 +1,15 @@
-# Getting Started with Create React App
+# Simple react app that
 
+1. Fetch Data: Make an API call to the "Rick and Morty" API and fetch the characters’ data.
+2. Display Data: Render the fetched data in a table with the following columns: ID, Name, Status, Species, and Detail Button.
+3. Search: Implement a search functionality that allows users to search characters based on their name.
+4. Sort: Allow users to sort the data based on Name and ID, in both ascending and descending order.
+5. Detail View: Implement a "Detail" button in each row. When a user clicks on it, a popup/modal should appear, displaying detailed information about the character, including an image, gender, location, and origin. (fetch single character details)
+6. Pagination: Implement pagination for the displayed characters.
+
+# Find the website at
+[Rick and Morty](https://master.d3isv88gi0onxz.amplifyapp.com/)
+   
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -8,63 +18,13 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+It runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Development approach and reasons behind your technical choices.
+- Used tailwind for styling instead of using CSS or SASS and redefining all styles.
+- Have a straightforward file and folder system. A components folder with components for sorting, search bar, table, pagination and modal.
+- All the functionality and state are handled in the root itself. I haven't utilized any redux or state management as it's a fairly simple component structure and props are passed only one level.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Challenges encountered and how you addressed them.
+- No major challenges. Pretty straightforward assignment. Faced a couple of challenges with UI styling choices and had to refer to the tailwind documentation.
