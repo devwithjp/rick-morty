@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSearchTerm, setSortConfig, setCharacters } from './redux/actions';
 import CharacterTable from './components/CharacterTable';
 import SearchBar from './components/SearchBar';
 import SortButton from './components/SortButton';
@@ -6,10 +8,12 @@ import Pagination from './components/Pagination';
 import CharacterDetailModal from './components/CharacterDetailModal';
 
 function App() {
-  const [characters, setCharacters] = useState([]);
+  const searchTerm = useSelector((state) => state.searchTerm);
+  const sortConfig = useSelector((state) => state.sortConfig);
+  const characters = useSelector((state) => state.characters);
+  const dispatch = useDispatch();
+
   const [filteredCharacters, setFilteredCharacters] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortConfig, setSortConfig] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [charactersPerPage] = useState(10);
   const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -19,12 +23,12 @@ function App() {
     fetch('https://rickandmortyapi.com/api/character/')
       .then((response) => response.json())
       .then((data) => {
-        setCharacters(data.results);
+        dispatch(setCharacters(data.results));
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
-  }, []);
+  }, [dispatch]);
 
   // Handle search functionality
   
@@ -34,8 +38,8 @@ function App() {
     const filteredChars = characters.filter((character) =>
       character.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredCharacters(filteredChars);
-  }, [searchTerm, characters]);
+   setFilteredCharacters(filteredChars);
+  }, [searchTerm, characters,dispatch]);
 
   // Handle sorting functionality
   const sortData = (key) => {
@@ -45,18 +49,12 @@ function App() {
     } else {
       sortedData.sort((a, b) => (a[key] > b[key] ? 1 : -1));
     }
-    setSortConfig({ key, direction: 'asc' });
+    dispatch(setSortConfig({ key, direction: 'asc' }));
     setFilteredCharacters(sortedData);
   };
 
 
-  const openModal = (character) => {
-    setSelectedCharacter(character);
-  };
 
-  const closeModal = () => {
-    setSelectedCharacter(null);
-  };
   // Handle pagination
   const indexOfLastCharacter = currentPage * charactersPerPage;
   const indexOfFirstCharacter = indexOfLastCharacter - charactersPerPage;

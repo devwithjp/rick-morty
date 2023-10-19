@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
+import {useDispatch } from 'react-redux';
 
 function SearchBar({ setSearchTerm,searchTerm }) {
+  const dispatch = useDispatch();
 
   const handleSearch = (event) => {
     const newSearchTerm = event.target.value;
-    setSearchTerm(newSearchTerm);
+    dispatch(setSearchTerm(newSearchTerm));
   };
 
   return (
