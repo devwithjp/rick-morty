@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from "react-router-dom";
 import CharacterTable from './components/CharacterTable';
 import SearchBar from './components/SearchBar';
 import SortButton from './components/SortButton';
@@ -12,7 +13,10 @@ function App() {
   const [sortConfig, setSortConfig] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [charactersPerPage] = useState(10);
+  const [open, setOpen] = useState(false);
+  let [searchParams, setSearchParams] = useSearchParams();
   const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const navigate = useNavigate();
 
   // Fetch data from the API and update the 'characters' state
   useEffect(() => {
@@ -26,11 +30,18 @@ function App() {
       });
   }, []);
 
+
+  useEffect(() => {
+    // Check if the modal should be opened based on the URL parameter
+    setSelectedCharacter(characters.find(character=> character.id == searchParams.id));
+    console.log(selectedCharacter);
+    setOpen(true);
+  }, [searchParams.id]);
+
   // Handle search functionality
   
 
   useEffect(() => {
-    console.log("FRFRF")
     const filteredChars = characters.filter((character) =>
       character.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -51,11 +62,14 @@ function App() {
 
 
   const openModal = (character) => {
+    setOpen(true);
     setSelectedCharacter(character);
+    setSearchParams({id: character.id});
   };
 
   const closeModal = () => {
-    setSelectedCharacter(null);
+    setOpen(false);
+    navigate('/'); // Remove the characterId parameter from the URL
   };
   // Handle pagination
   const indexOfLastCharacter = currentPage * charactersPerPage;
@@ -72,7 +86,7 @@ function App() {
       />
       <CharacterTable
         characters={currentCharacters}
-        openModal={setSelectedCharacter}
+        openModal={openModal}
       />
       <Pagination
         charactersPerPage={charactersPerPage}
@@ -80,10 +94,10 @@ function App() {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
-      {selectedCharacter && (
+      {selectedCharacter && open && (
         <CharacterDetailModal
           character={selectedCharacter}
-          closeModal={() => setSelectedCharacter(null)}
+          closeModal={closeModal}
         />
       )}
     </div>

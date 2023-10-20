@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
+
 
 function CharacterTable({ characters, openModal }) {
   return (
@@ -18,6 +20,9 @@ function CharacterTable({ characters, openModal }) {
             Species
           </th>
           <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Open Modal
+          </th>
+          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             Detail
           </th>
         </tr>
@@ -33,9 +38,16 @@ function CharacterTable({ characters, openModal }) {
               <button
                 onClick={() => openModal(character)}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-300"
-              >
-                Detail
+                >
+              Open Modal
               </button>
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap">
+              <NavLink to={`details/${character.id}`}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-300"
+              >
+                Open Detail
+              </NavLink>
             </td>
           </tr>
         ))}
