@@ -34,7 +34,6 @@ function App() {
   useEffect(() => {
     // Check if the modal should be opened based on the URL parameter
     setSelectedCharacter(characters.find(character=> character.id == searchParams.id));
-    console.log(selectedCharacter);
     setOpen(true);
   }, [searchParams.id]);
 
